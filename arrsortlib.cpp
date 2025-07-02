@@ -35,3 +35,63 @@ int* bubbleSort(int inputArray[], int arraySize) {
     }
     return inputArray;
 }
+
+int* merge(int leftArray[], int leftArraySize, int rightArray[], int rightArraySize, int inputArray[], int arraySize) {
+    int i = 0;
+    int l = 0;
+    int r = 0;
+
+    while (l < leftArraySize && r < rightArraySize) {
+        if (leftArray[l] < rightArray[r]) {
+            inputArray[i] = leftArray[l];
+            i++;
+            l++;
+        } else {
+            inputArray[i] = rightArray[r];
+            i++;
+            r++;
+        }
+    }
+    while (l < leftArraySize) {
+        inputArray[i] = leftArray[l];
+        i++;
+        l++;
+    }
+    while (r < rightArray[r]) {
+        inputArray[i] = rightArray[r];
+        i++;
+        r++;
+    }
+
+    return inputArray;
+}
+
+int* mergeSort(int inputArray[], int arraySize) {
+    if (arraySize <= 1) {
+        return inputArray;
+    }
+
+    int middle = arraySize / 2;
+    int leftArraySize = middle;
+    int rightArraySize = arraySize - middle;
+    int* leftArray = new int[middle];
+    int* rightArray = new int[arraySize - middle];
+
+    int i = 0; // left array
+    int j = 0; // right array
+
+    for (; i < arraySize; i++) {
+        if (i < middle) {
+            leftArray[i] = inputArray[i];
+        } else {
+            rightArray[j] = inputArray[i];
+            j++;
+        }
+    }
+
+    leftArray = mergeSort(leftArray, leftArraySize);
+    rightArray = mergeSort(rightArray, rightArraySize);
+    inputArray = merge(leftArray, leftArraySize, rightArray, rightArraySize, inputArray, arraySize);
+    return inputArray;
+
+}

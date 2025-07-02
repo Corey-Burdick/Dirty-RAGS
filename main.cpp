@@ -31,6 +31,10 @@ int main(int argc, char* argv[]) {
                 sortMode = 1;
             }
 
+            if (std::string(argv[i]) == "-m") {
+                sortMode = 2;
+            }
+
             if (std::string(argv[i]) == "--silly") {
                 sortMode = 40;
             }
@@ -66,7 +70,7 @@ int main(int argc, char* argv[]) {
                 printf("                  Sorting Options:\n");
                 printf("\n");
                 printf("   -b             Sorts the array using Bubble sort.\n");
-                printf("   -m             Sorts the array using Merge Sort. (Not yet implemented)\n");
+                printf("   -m             Sorts the array using Merge Sort.\n");
                 printf("\n");
                 return 0;
             }
@@ -98,7 +102,11 @@ int main(int argc, char* argv[]) {
             printf("Array not sorted\n");
             break;
         case 1:
-            myArray == bubbleSort(myArray, mySize);
+            myArray = bubbleSort(myArray, mySize);
+            printArray(myArray, mySize);
+            break;
+        case 2:
+            myArray = mergeSort(myArray, mySize);
             printArray(myArray, mySize);
             break;
         default:
