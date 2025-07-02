@@ -87,9 +87,9 @@ int main(int argc, char* argv[]) {
     auto endTime = std::chrono::high_resolution_clock::now();
 
     if (timerMode == true) {
-		auto trackedTime = std::chrono::duration_cast<std::chrono::milliseconds>(startTime - endTime);
+	auto trackedTime = std::chrono::duration_cast<std::chrono::milliseconds>(startTime - endTime);
         long long duration = trackedTime.count();
-		printf("Generation time: %lldms\n", duration);
+	printf("Generation time: %lldms\n", duration);
     }
 
     // Sorts the generated array using the sort mode with mild error handling if 
