@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/dirtyrags.dir/link.d CMakeFiles/dirtyrags.dir/main.cpp.o CMakeFiles/dirtyrags.dir/arrsortlib.cpp.o -o dirtyrags

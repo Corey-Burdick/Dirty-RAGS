@@ -1,0 +1,3 @@
+/home/corey/Code/src/build/CMakeFiles/dirtyrags.dir
+/home/corey/Code/src/build/CMakeFiles/edit_cache.dir
+/home/corey/Code/src/build/CMakeFiles/rebuild_cache.dir
