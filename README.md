@@ -14,6 +14,7 @@ You can either download the source directly from github using the download butto
 ```
 git clone https://github.com/Corey-Burdick/Dirty-RAGS.git
 ```
+### Step 2. Build From Source
 
 Once you have downloaded the source, you can use the following commands in the terminal to build.
 
