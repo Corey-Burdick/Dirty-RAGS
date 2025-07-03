@@ -95,3 +95,13 @@ int* mergeSort(int inputArray[], int arraySize) {
     return inputArray;
 
 }
+
+bool validateArray(int inputArray[], int arraySize) {
+    for (int i = 0; i < arraySize - 1; i++) {
+        if (inputArray[i] > inputArray[i + 1]) {
+            return false;
+        }
+    }
+    return true;
+    
+}

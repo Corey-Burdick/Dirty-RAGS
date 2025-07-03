@@ -96,6 +96,8 @@ int main(int argc, char* argv[]) {
     // somehow the sort mode value gets out of scope.
 
     startTime = std::chrono::high_resolution_clock::now();
+
+    bool valid = false;
     
     switch(sortMode) {
         case 0:
@@ -103,10 +105,14 @@ int main(int argc, char* argv[]) {
             break;
         case 1:
             myArray = bubbleSort(myArray, mySize);
+            valid = validateArray(myArray, mySize);
+            endTime = std::chrono::high_resolution_clock::now();
             printArray(myArray, mySize);
             break;
         case 2:
             myArray = mergeSort(myArray, mySize);
+            valid = validateArray(myArray, mySize);
+            endTime = std::chrono::high_resolution_clock::now();
             printArray(myArray, mySize);
             break;
         default:
@@ -114,14 +120,21 @@ int main(int argc, char* argv[]) {
             return 0;
     }
 
-    endTime = std::chrono::high_resolution_clock::now();
-
     if (timerMode == true && sortMode != 0) {
     	auto trackedTime = std::chrono::duration_cast<std::chrono::milliseconds>(startTime - endTime);
         long long duration = trackedTime.count();
         printf("Sort time: %lldms\n", duration);
     }
 
+    if (valid && sortMode != 0) {
+        printf("Sort has been validated.\n");
+    } else if (sortMode != 0) {
+        printf("Sort could not be validated.\n");
+    }
 
+    // Deallocate the memory on the heap
+    delete[] myArray;
+    myArray = nullptr;
+    
     return 0;
 }
