@@ -1,5 +1,5 @@
 
-void printArray(int inputArray[], int arraySize);
+void printArray(int inputArray[], int arraySize, bool verbose);
 int* generateArray(int size);
 int* bubbleSort(int inputArray[], int arraySize);
 int* merge(int leftArray[], int leftArraySize, int rightArray[], int rightArraySize, int inputArray[], int arraySize);

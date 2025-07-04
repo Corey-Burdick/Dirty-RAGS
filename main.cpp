@@ -14,10 +14,13 @@
 
 int main(int argc, char* argv[]) {
 
+    printf("\n");
+    
     // Set initial values.
     int mySize = 5;
     int sortMode = 0;
-    bool timerMode = false; 
+    bool timerMode = false;
+    bool verboseMode = false;
 
     // Parse array argv to check options. Alter initial values for later use.
     // TODO: This isn't a pretty way of doing this. If statement nesting will
@@ -48,10 +51,20 @@ int main(int argc, char* argv[]) {
 
             if (std::string(argv[i]) == "-c") {
                 mySize = atoi(argv[i + 1]);
-                if (mySize <= 0) {
-                    printf("Option \"-c\" requires an a postitive integer.\n");
+                if (mySize > 1000000) {
+                    printf("RAGS has a hard limit of 1000000 elements to prevent overallocation.\n");
+                    printf("\n");
                     return 0;
                 }
+                if (mySize <= 0) {
+                    printf("Option \"-c\" requires an a postitive integer.\n");
+                    printf("\n");
+                    return 0;
+                }
+            }
+
+            if (std::string(argv[i]) == "-v") {
+                verboseMode = true;
             }
 
 		    if (std::string(argv[i]) == "-t") {
@@ -64,6 +77,7 @@ int main(int argc, char* argv[]) {
                 printf("\n");
                 printf("   -h --help      You are here.\n");
                 printf("\n");
+                printf("   -v             Verbose Mode. Prints the entire array instead of the first ten elements.\n");
                 printf("   -t             Displays the amount of time it takes to generate or sort an array.\n");
                 printf("   -c number      Sets the number of elements in the generated array.\n");
                 printf("\n");
@@ -83,7 +97,7 @@ int main(int argc, char* argv[]) {
 
     auto startTime = std::chrono::high_resolution_clock::now();
     int* myArray = generateArray(mySize);
-    printArray(myArray, mySize);
+    printArray(myArray, mySize, verboseMode);
     auto endTime = std::chrono::high_resolution_clock::now();
 
     if (timerMode == true) {
@@ -107,13 +121,13 @@ int main(int argc, char* argv[]) {
             myArray = bubbleSort(myArray, mySize);
             valid = validateArray(myArray, mySize);
             endTime = std::chrono::high_resolution_clock::now();
-            printArray(myArray, mySize);
+            printArray(myArray, mySize, verboseMode);
             break;
         case 2:
             myArray = mergeSort(myArray, mySize);
             valid = validateArray(myArray, mySize);
             endTime = std::chrono::high_resolution_clock::now();
-            printArray(myArray, mySize);
+            printArray(myArray, mySize, verboseMode);
             break;
         default:
             printf("Kris, how the hell did we get here?\n");
@@ -132,6 +146,7 @@ int main(int argc, char* argv[]) {
         printf("Sort could not be validated.\n");
     }
 
+    printf("\n");
     // Deallocate the memory on the heap
     delete[] myArray;
     myArray = nullptr;

@@ -2,14 +2,28 @@
 #include <random>
 #include <ctime>
 
-void printArray(int inputArray[], int arraySize) {
+void printArray(int inputArray[], int arraySize, bool verbose) {
+    printf("\n");
     printf("Printed Array: ");
-    for (int i = 0; i < arraySize;) {
-        printf("%d",inputArray[i]);
-        i++;
-        if (i != arraySize) {
-            printf(", ");
+
+    if (arraySize <= 10 || verbose) {
+        for (int i = 0; i < arraySize;) {
+            printf("%d", inputArray[i]);
+            i++;
+            if (i != arraySize) {
+                printf(", ");
+            }
         }
+        printf("\n");
+    } else {
+        for (int i = 0; i < 10;) {
+            printf("%d", inputArray[i]);
+            i++;
+            if (i != 10) {
+                printf(", ");
+            }
+        }
+        printf("...\n");
     }
     printf("\n");
 }
@@ -24,6 +38,9 @@ int* generateArray(int size) {
 }
 
 int* bubbleSort(int inputArray[], int arraySize) {
+    if (arraySize <= 1) {
+        return inputArray;
+    }
     for (int i = 0; i < arraySize; i++) {
         for (int j = 0; j < arraySize - 1; j++) {
             if (inputArray[j] > inputArray[j + 1]) {

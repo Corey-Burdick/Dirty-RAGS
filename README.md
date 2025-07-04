@@ -44,6 +44,10 @@ You can also decide the number of elements in the generated array with "-c" foll
 
 You may also pass the argument "-t", which will display the time it takes for Dirty Rags to generate and sort the array in milliseconds.
 
+By default, rags only shows the first ten elements of a sorted or generated array. You can show the whole array with "-v", enabling verbose mode.
+
+You can see a list of all options with "-h" or "--help".
+
 **Examples:**
 
 ```
