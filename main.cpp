@@ -4,6 +4,7 @@
 #include <chrono>
 
 #include "arrsortlib.h"
+#include "ragsiolib.h"
 
 // Dirty Random Array Generator and Sorter
 // Dirty RAGS
@@ -147,6 +148,7 @@ int main(int argc, char* argv[]) {
     }
 
     printf("\n");
+    
     // Deallocate the memory on the heap
     delete[] myArray;
     myArray = nullptr;
