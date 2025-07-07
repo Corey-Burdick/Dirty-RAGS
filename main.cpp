@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string>
 #include <chrono>
+#include <fstream>
 
 #include "arrsortlib.h"
 #include "ragsiolib.h"
@@ -13,6 +14,8 @@
 // just to get me working with c++ again after a few years
 // of inactivity.
 
+
+
 int main(int argc, char* argv[]) {
 
     printf("\n");
@@ -22,15 +25,19 @@ int main(int argc, char* argv[]) {
     int sortMode = 0;
     bool timerMode = false;
     bool verboseMode = false;
+    bool readMode = false;
+    bool writeMode = false;
+    std::string filename = "output.txt";
 
     // Parse array argv to check options. Alter initial values for later use.
-    // TODO: This isn't a pretty way of doing this. If statement nesting will
-    // make documenting additional functionality a nightmare. Needs cleanup,
-    // DESPERATELY.
 
     if (argc > 1) {
         for (int i = 0; i < argc; i++) {
-                
+
+            if (std::string(argv[i]) == "-s") {
+                writeMode = true;
+            }
+
             if (std::string(argv[i]) == "-b") {
                 sortMode = 1;
             }
@@ -78,6 +85,7 @@ int main(int argc, char* argv[]) {
                 printf("\n");
                 printf("   -h --help      You are here.\n");
                 printf("\n");
+                printf("   -s             Saves the generated array to 'output.txt'\n");
                 printf("   -v             Verbose Mode. Prints the entire array instead of the first ten elements.\n");
                 printf("   -t             Displays the amount of time it takes to generate or sort an array.\n");
                 printf("   -c number      Sets the number of elements in the generated array.\n");
@@ -99,7 +107,11 @@ int main(int argc, char* argv[]) {
     auto startTime = std::chrono::high_resolution_clock::now();
     int* myArray = generateArray(mySize);
     printArray(myArray, mySize, verboseMode);
+
     auto endTime = std::chrono::high_resolution_clock::now();
+
+    if (writeMode) saveArray(myArray, mySize, filename);
+
 
     if (timerMode == true) {
 	auto trackedTime = std::chrono::duration_cast<std::chrono::milliseconds>(startTime - endTime);
@@ -133,6 +145,10 @@ int main(int argc, char* argv[]) {
         default:
             printf("Kris, how the hell did we get here?\n");
             return 0;
+    }
+
+    if (writeMode) {
+        saveArray(myArray, mySize, filename);
     }
 
     if (timerMode == true && sortMode != 0) {

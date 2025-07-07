@@ -1,6 +1,9 @@
 #include <stdio.h>
+#include <iostream>
 #include <random>
 #include <ctime>
+#include <fstream>
+#include <string>
 
 void printArray(int inputArray[], int arraySize, bool verbose) {
     printf("\n");
@@ -36,3 +39,26 @@ int* generateArray(int size) {
     }
     return arr;
 }
+
+void saveArray(int inputArray[], int arraySize, std::string filename) {
+    std::ofstream outFile(filename);
+
+    if (!outFile.is_open()) {
+        // File could not be opened. Error Handle.
+        std::cerr << "File could not be created or opened." << std::endl;
+        return;
+    }
+
+    outFile << "Array Size: " << std::endl;
+    outFile << arraySize << std::endl;
+    
+    // Array begins on line 3
+    for (int i = 0; i < arraySize; i++) {
+        outFile << inputArray[i] << std::endl;
+    }
+
+    outFile << "END";
+
+    outFile.close();
+}
+

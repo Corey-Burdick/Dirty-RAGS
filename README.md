@@ -46,6 +46,8 @@ You may also pass the argument "-t", which will display the time it takes for Di
 
 By default, rags only shows the first ten elements of a sorted or generated array. You can show the whole array with "-v", enabling verbose mode.
 
+If you wish to save a generated array, you can use the option "-s" to do so. This will output the generated array to "output.txt" in your working directory.
+
 You can see a list of all options with "-h" or "--help".
 
 **Examples:**
