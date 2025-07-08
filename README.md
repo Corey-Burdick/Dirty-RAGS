@@ -40,7 +40,7 @@ You can choose which sorting algorithm to do by adding "-b" for bubble sort, or 
 
 If you use both options, Dirty Rags will use whichever is last in the command.
 
-You can also decide the number of elements in the generated array with "-c" followed by the desired number of elements (default 5).
+You can also decide the number of elements in the generated array with "-n" followed by the desired number of elements (default 5).
 
 You may also pass the argument "-t", which will display the time it takes for Dirty Rags to generate and sort the array in milliseconds.
 
@@ -53,11 +53,11 @@ You can see a list of all options with "-h" or "--help".
 **Examples:**
 
 ```
-./dirtyrags -c 10 -b -m
+./dirtyrags -n 10 -b -m
 
 (This would result in using the merge sort algorithm to sort 10 elements).
 
-./dirtyrags -c 10 -b -t
+./dirtyrags -n 10 -b -t
 
 (This would result in using the bubble sort algorithm to sort 10 elements, and show the time it took to generate the initial array, and sort it).
 ```

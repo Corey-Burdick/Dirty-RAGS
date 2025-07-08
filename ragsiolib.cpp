@@ -6,7 +6,6 @@
 #include <string>
 
 void printArray(int inputArray[], int arraySize, bool verbose) {
-    printf("\n");
     printf("Printed Array: ");
 
     if (arraySize <= 10 || verbose) {
@@ -28,7 +27,6 @@ void printArray(int inputArray[], int arraySize, bool verbose) {
         }
         printf("...\n");
     }
-    printf("\n");
 }
 
 int* generateArray(int size) {
