@@ -1,4 +1,6 @@
+#include <vector>
 
-int* bubbleSort(int inputArray[], int arraySize);
-int* merge(int leftArray[], int leftArraySize, int rightArray[], int rightArraySize, int inputArray[], int arraySize);
-int* mergeSort(int inputArray[], int arraySize);
+std::vector<int> bubbleSort(std::vector<int>& inputArray);
+std::vector<int> merge(std::vector<int> leftArray, std::vector<int> rightArray, std::vector<int> inputArray);
+std::vector<int> mergeSort(std::vector<int> inputArray);
+bool validateArray(std::vector<int> inputArray);

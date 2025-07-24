@@ -1,5 +1,5 @@
+#include <vector>
 
-void printArray(int inputArray[], int arraySize, bool verbose);
-int* generateArray(int size);
-bool validateArray(int inputArray[], int arraySize);
-void saveArray(int inputArray[], int arraySize, std::string filename);
+void printArray(std::vector<int> inputArray, bool verbose);
+std::vector<int> generateArray(int size);
+void saveArray(std::vector<int> inputArray, std::string filename);

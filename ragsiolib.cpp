@@ -4,15 +4,15 @@
 #include <ctime>
 #include <fstream>
 #include <string>
+#include <vector>
 
-void printArray(int inputArray[], int arraySize, bool verbose) {
-    printf("Printed Array: ");
+void printArray(std::vector<int> inputArray, bool verbose) {
 
-    if (arraySize <= 10 || verbose) {
-        for (int i = 0; i < arraySize;) {
+    if (inputArray.size() <= 10 || verbose) {
+        for (int i = 0; i < inputArray.size();) {
             printf("%d", inputArray[i]);
             i++;
-            if (i != arraySize) {
+            if (i != inputArray.size()) {
                 printf(", ");
             }
         }
@@ -29,16 +29,16 @@ void printArray(int inputArray[], int arraySize, bool verbose) {
     }
 }
 
-int* generateArray(int size) {
+std::vector<int> generateArray(int size) {
     srand(time(NULL));
-    int* arr = new int[size];
+    std::vector<int> output(size);
     for (int i = 0; i < size; i++) {
-        arr[i] = rand() % size + 1;
+        output[i] = rand() % size + 1;
     }
-    return arr;
+    return output;
 }
 
-void saveArray(int inputArray[], int arraySize, std::string filename) {
+void saveArray(std::vector<int> inputArray, std::string filename) {
     std::ofstream outFile(filename);
 
     if (!outFile.is_open()) {
@@ -48,10 +48,10 @@ void saveArray(int inputArray[], int arraySize, std::string filename) {
     }
 
     outFile << "Array Size: " << std::endl;
-    outFile << arraySize << std::endl;
+    outFile << inputArray.size() << std::endl;
     
     // Array begins on line 3
-    for (int i = 0; i < arraySize; i++) {
+    for (int i = 0; i < inputArray.size(); i++) {
         outFile << inputArray[i] << std::endl;
     }
 

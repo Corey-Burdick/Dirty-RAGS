@@ -105,8 +105,9 @@ int main(int argc, char* argv[]) {
 
     auto startTime = std::chrono::high_resolution_clock::now();
     
-    int* myArray = generateArray(mySize);
-    printArray(myArray, mySize, verboseMode);
+    std::vector<int> myArray = generateArray(mySize);
+    printf("Generated Random Array: ");
+    printArray(myArray, verboseMode);
 
     auto endTime = std::chrono::high_resolution_clock::now();
 
@@ -126,20 +127,23 @@ int main(int argc, char* argv[]) {
             printf("Array not sorted\n");
             break;
         case 1:
-            myArray = bubbleSort(myArray, mySize);
-            validSort = validateArray(myArray, mySize);
+            myArray = bubbleSort(myArray);
+            validSort = validateArray(myArray);
             endTime = std::chrono::high_resolution_clock::now();
-            printArray(myArray, mySize, verboseMode);
             break;
         case 2:
-            myArray = mergeSort(myArray, mySize);
-            validSort = validateArray(myArray, mySize);
+            myArray = mergeSort(myArray);
+            validSort = validateArray(myArray);
             endTime = std::chrono::high_resolution_clock::now();
-            printArray(myArray, mySize, verboseMode);
             break;
         default:
             printf("Kris, how the hell did we get here?\n");
             return 0;
+    }
+    
+    if (sortMode != 0) { 
+        printf("Sorted Random Array: ");
+        printArray(myArray, verboseMode);
     }
 
     if (timerMode == true && sortMode != 0) {
@@ -154,11 +158,7 @@ int main(int argc, char* argv[]) {
         printf("Sort could not be validated.\n");
     }
     
-    if (writeMode) saveArray(myArray, mySize, filename);
+    if (writeMode) saveArray(myArray, filename);
 
-    // Deallocate the memory on the heap
-    delete[] myArray;
-    myArray = nullptr;
-    
     return 0;
 }
