@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
 
     
     // Set initial values.
-    std::string versionNumber = "0.2.03";
+    std::string versionNumber = "0.3.01";
     int mySize = 5;
     int sortMode = 0;
     bool validSort = false;
